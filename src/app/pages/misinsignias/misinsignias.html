@@ -1,0 +1,61 @@
+<div class="insignias-wrapper">
+
+    <h1 class="title">Mis Insignias</h1>
+    <p class="subtitle">
+        Consulta tus logros obtenidos por metas cumplidas y consumo responsable
+    </p>
+
+    <!-- TARJETA DEL RESUMEN -->
+    <div class="resumen-card">
+
+        <div class="resumen-left">
+            <p class="label">Total de insignias obtenidas</p>
+            <h2 class="total">{{ totalInsignias }}</h2>
+        </div>
+
+        <div class="resumen-chart">
+            <canvas #donutCanvas></canvas>
+        </div>
+
+        <div class="resumen-legend">
+            <p><span class="color agua"></span> Agua</p>
+            <p><span class="color luz"></span> Electricidad</p>
+            <p><span class="color gas"></span> Gas</p>
+        </div>
+    </div>
+
+    <!-- LISTA DE INSIGNIAS -->
+    <h2 class="subtitle2">Insignias activas</h2>
+
+    <!-- MENSAJE CUANDO NO EXISTEN INSIGNIAS -->
+    <div *ngIf="insignias.length === 0" class="no-data">
+        <mat-icon>info</mat-icon>  No hay insignias registradas.
+    </div>
+
+    <div class="cards-grid" *ngIf="insignias.length > 0">
+        <div class="insignia-card" *ngFor="let ins of insignias">
+
+            <div class="icon-circle"
+                [style.background]="getColorIcono(ins.meta?.recurso?.nombreRecurso) + '20'"
+                [style.color]="getColorIcono(ins.meta?.recurso?.nombreRecurso)">
+                <mat-icon>
+                    {{ getIcono(ins.meta?.recurso?.nombreRecurso) }}
+                </mat-icon>
+            </div>
+
+            <div class="info">
+                <h3 class="nombre">{{ ins.nombre_logro }}</h3>
+                <p class="recurso">{{ ins.meta?.recurso?.nombreRecurso }}</p>
+
+                <p><strong>Puntos:</strong> {{ ins.puntos }} puntos</p>
+
+                <p>
+                    <strong>Meta relacionada:</strong>
+                    {{ ins.meta?.nombre || '—' }}
+                </p>
+            </div>
+
+        </div>
+    </div>
+
+</div>

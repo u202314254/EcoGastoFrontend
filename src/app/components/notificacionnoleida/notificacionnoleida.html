@@ -1,0 +1,29 @@
+<div class="container-metas">
+  <h1 class="titulo">Notificaciones No Leídas</h1>
+
+  <!-- Mensaje cuando no hay notificaciones -->
+  <div *ngIf="!dataSource || dataSource.data.length === 0" class="no-metas">
+    <mat-icon>info</mat-icon> No hay notificaciones no leídas
+  </div>
+
+  <!-- Cards de notificaciones -->
+  <div class="cards-grid" *ngIf="dataSource && dataSource.data.length > 0">
+    <div class="meta-card" *ngFor="let notificacion of dataSource.data">
+      <div class="card-header">
+        <mat-icon class="card-icon">notifications</mat-icon>
+        <h3 class="meta-title">{{ notificacion.titulo }}</h3>
+      </div>
+
+      <div class="card-body">
+        <p><strong>Descripción:</strong> {{ notificacion.descripcion }}</p>
+        <p><strong>Fecha:</strong> {{ notificacion.fecha | date:'dd/MM/yyyy' }}</p>
+      </div>
+
+      <div class="card-footer">
+        <button routerLink="/misnotificaciones" class="btn-detalle">
+          Ver detalle
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

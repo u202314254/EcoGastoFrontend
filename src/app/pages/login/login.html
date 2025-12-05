@@ -1,0 +1,32 @@
+<div class="login-wrapper">
+  <div class="login-content">
+    <a routerLink="/home" class="close-button">X</a>
+
+    <img src="leaf blanco.png" class="logo" />
+
+    <h1 class="title">EcoGasto</h1>
+    <p class="subtitle">Bienvenido nuevamente</p>
+
+    <!-- CENTRADO SIN AFECTAR ESTILOS -->
+    <div style="width:100%; display:flex; flex-direction:column; align-items:center;">
+
+      <mat-form-field class="example-full-width" style="max-width:230px;">
+        <mat-label>Usuario</mat-label>
+        <input matInput placeholder="Usuario" [(ngModel)]="username" />
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width" style="max-width:230px;">
+        <mat-label>Contraseña</mat-label>
+        <input type="password" placeholder="Contraseña" [(ngModel)]="password" />
+      </mat-form-field>
+
+    </div>
+
+    <button class="login-btn" type="button" (click)="iniciarSesion()">Iniciar sesión</button>
+
+    <p class="register-text">
+      ¿No tienes cuenta?
+      <a routerLink="/registrar">Crear cuenta</a>
+    </p>
+  </div>
+</div>

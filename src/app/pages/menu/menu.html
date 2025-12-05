@@ -1,0 +1,84 @@
+<!-- NAVBAR FIJO ARRIBA -->
+<header class="menu-header">
+  <div class="menu-container">
+    <!-- USUARIOS -->
+    <mat-toolbar class="menu-item">
+      <button mat-button routerLink="/usuarios"><mat-icon>person</mat-icon> Usuarios</button>
+    </mat-toolbar>
+
+
+    @if(isAdmin()){
+    <mat-toolbar class="menu-item">
+      <button mat-button routerLink="/metas"><mat-icon>flag</mat-icon> Metas</button>
+    </mat-toolbar>
+    } @if(isTester()){
+    <mat-toolbar class="menu-item">
+      <button mat-button routerLink="/insignias">
+        <mat-icon>emoji_events</mat-icon> Insignias
+      </button>
+    </mat-toolbar>
+    }
+
+    <mat-toolbar class="menu-item">
+      <button mat-button routerLink="/metas"><mat-icon>flag</mat-icon> Metas</button>
+    </mat-toolbar>
+
+    <mat-toolbar class="menu-item">
+      <button mat-button routerLink="/insignias">
+        <mat-icon>emoji_events</mat-icon> Insignias
+      </button>
+    </mat-toolbar>
+
+    <!-- RECURSOS -->
+    <mat-toolbar class="menu-item">
+      <button mat-button routerLink="/recursos"><mat-icon>eco</mat-icon> Recursos</button>
+    </mat-toolbar>
+
+    <mat-toolbar class="menu-item">
+      <button mat-button routerLink="/consumos"><mat-icon>shopping_cart</mat-icon> Consumos</button>
+    </mat-toolbar>
+
+    <!-- METAS -->
+
+    <!-- NOTIFICACIONES -->
+    <mat-toolbar class="menu-item">
+      <button mat-button routerLink="/notificaciones">
+        <mat-icon>notifications</mat-icon> Notificaciones
+      </button>
+    </mat-toolbar>
+
+    <!-- ROLES -->
+    <mat-toolbar class="menu-item">
+      <button mat-button routerLink="/roles"><mat-icon>supervisor_account</mat-icon> Roles</button>
+    </mat-toolbar>
+
+    <!-- INSIGNIAS -->
+    <mat-toolbar class="menu-item">
+      <button mat-button routerLink="/hogares"><mat-icon>home</mat-icon> Hogares</button>
+    </mat-toolbar>
+
+    <!-- SEGURIDADES -->
+    <mat-toolbar class="menu-item">
+      <button mat-button routerLink="/seguridades">
+        <mat-icon>security</mat-icon> Seguridades
+      </button>
+    </mat-toolbar>
+
+    <!-- PERFILES -->
+    <mat-toolbar class="menu-item">
+      <button mat-button routerLink="/perfiles"><mat-icon>badge</mat-icon> Perfiles</button>
+    </mat-toolbar>
+
+    <!-- RECOMENDACIONES -->
+    <mat-toolbar class="menu-item">
+      <button mat-button routerLink="/recomendaciones">
+        <mat-icon>tips_and_updates</mat-icon> Recomendaciones
+      </button>
+    </mat-toolbar>
+
+    <mat-toolbar class="menu-item">
+      <button mat-button routerLink="/dashboard"><mat-icon>logout</mat-icon> Salir</button>
+    </mat-toolbar>
+    
+  </div>
+</header>

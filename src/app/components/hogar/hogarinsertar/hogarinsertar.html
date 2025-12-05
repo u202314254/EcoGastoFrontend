@@ -1,0 +1,58 @@
+<div class="container">
+  <div style="text-align: center; margin: 5%"><h2>Registro de Hogar</h2></div>
+
+  <div style="text-align: center; margin: 5%">
+    <form [formGroup]="form" (submit)="aceptar()">
+      @if(edicion){
+      <mat-form-field>
+        <mat-label>ID</mat-label>
+        <input matInput formControlName="codigo" readonly="true" />
+      </mat-form-field>
+      }
+      <br />
+      <mat-form-field>
+        <mat-label>Distrito</mat-label>
+        <input matInput formControlName="distrito" />
+        <mat-error>
+          @if (form.get('distrito')?.hasError('required')) { Ingrese distrito! }
+        </mat-error>
+      </mat-form-field>
+      <br />
+
+      <mat-form-field>
+        <mat-label>Tipo de hogar</mat-label>
+        <mat-select formControlName="tipohogar">
+          @for (t of tipohogar; track t) {
+          <mat-option [value]="t.value">{{ t.viewValue }}</mat-option>
+          }
+        </mat-select>
+        <mat-error>
+          @if (form.get('tipohogar')?.hasError('required')) { Ingrese tipo!! }
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Numero de personas</mat-label>
+        <input matInput formControlName="numpersonas" type="number" />
+        <mat-error>
+          @if (form.get('numpersonas')?.hasError('required')) { Ingrese la cantidad de personas! }
+          @else if (form.get('numpersonas')?.hasError('min')) { El número debe ser mayor a 0 }
+        </mat-error>
+      </mat-form-field>
+      <br />
+
+      <mat-form-field>
+        <mat-label>Ubicacion</mat-label>
+        <input matInput formControlName="ubicacion" />
+        <mat-error>
+          @if (form.get('ubicacion')?.hasError('required')) { Ingrese ubicacion! }
+        </mat-error>
+      </mat-form-field>
+      <br />
+
+      <div style="margin-top: 20px">
+        <button mat-raised-button color="primary" type="submit">{{ edicion ? 'Editar' : 'Registrar' }}</button>
+      </div>
+    </form>
+  </div>
+</div>

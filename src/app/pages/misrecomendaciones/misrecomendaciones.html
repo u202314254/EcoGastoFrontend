@@ -1,0 +1,78 @@
+<div class="reco-container">
+
+  <!-- IZQUIERDA – CARDS + BOTÓN -->
+  <div class="left-side">
+    <div class="header">
+      <h1>Mis Recomendaciones</h1>
+    </div>
+
+    <!-- MENSAJE SI NO HAY RECOMENDACIONES -->
+    <div *ngIf="listaRecomendaciones.length === 0" class="no-data">
+        <mat-icon>info</mat-icon>  No hay recomendaciones registradas
+    </div>
+
+    <!-- CARDS -->
+    <div class="cards-wrapper" *ngIf="listaRecomendaciones.length > 0">
+      <div class="card" *ngFor="let rec of listaRecomendaciones">
+        <h3>{{ rec.titulo }}</h3>
+        <p>{{ rec.descripcion }}</p>
+
+        <div class="card-footer">
+          <span class="categoria">{{ rec.categoria }}</span>
+          <button (click)="eliminar(rec.idRecomendacion)" class="delete-btn">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DERECHA – CHAT -->
+  <div class="right-side">
+    <div class="chat-container">
+
+      <div class="chat-header">
+        <div class="chat-title">
+          <mat-icon>eco</mat-icon>
+          <span>Asistente EcoGasto IA</span>
+        </div>
+        <p class="chat-subtitle">Escribe tus dudas sobre ahorro del hogar.</p>
+      </div>
+
+      <div class="chat-body">
+        <div *ngFor="let msg of mensajes"
+          [ngClass]="{ 'msg-row': true, 'msg-user': msg.de === 'user', 'msg-ia': msg.de === 'ia' }">
+
+          <div class="avatar" *ngIf="msg.de === 'ia'">
+            <mat-icon>smart_toy</mat-icon>
+          </div>
+
+          <div class="bubble">
+            <p>{{ msg.texto }}</p>
+          </div>
+
+          <div class="avatar user-avatar" *ngIf="msg.de === 'user'">
+            <mat-icon>person</mat-icon>
+          </div>
+        </div>
+
+        <div *ngIf="cargandoIA" class="typing">
+          <mat-icon>more_horiz</mat-icon>
+          <span>La IA está pensando...</span>
+        </div>
+      </div>
+
+      <form class="chat-input" (ngSubmit)="enviarMensaje()">
+        <textarea [(ngModel)]="mensajeUsuario" name="mensajeUsuario" placeholder="Escribe tu mensaje…"
+          (keydown.enter)="handleEnter($event)" rows="2">
+        </textarea>
+
+        <button type="submit" [disabled]="!mensajeUsuario.trim() || cargandoIA" class="send-btn">
+          <mat-icon>send</mat-icon>
+        </button>
+      </form>
+
+    </div>
+  </div>
+
+</div>

@@ -1,0 +1,187 @@
+<div class="register-wrapper">
+  <div class="register-content">
+    <a routerLink="/home" class="close-button">X</a>
+
+    <div class="header">
+      <div class="brand-row">
+        <img src="leaf blanco.png" class="logo" alt="Logo" />
+        <h1 class="title">EcoGasto</h1>
+      </div>
+      <p class="subtitle">Crea tu cuenta</p>
+    </div>
+
+    <mat-stepper [linear]="true" #stepper orientation="horizontal">
+      <mat-step [stepControl]="formHogar" label="Hogar">
+        <form [formGroup]="formHogar" class="stepper-form">
+          <div class="autocomplete-container">
+            <label>Distrito</label>
+            <input
+              type="text"
+              formControlName="distrito"
+              placeholder="Escribe tu distrito"
+              autocomplete="off"
+            />
+
+            @if (formHogar.get('distrito')?.touched &&
+            formHogar.get('distrito')?.hasError('required')) {
+            <span class="error-msg">¡Ingrese distrito!</span>
+            }
+          </div>
+
+          <label>Ubicación</label>
+          <input formControlName="ubicacion" placeholder="Ingresa ubicación" />
+          @if (formHogar.get('ubicacion')?.touched &&
+          formHogar.get('ubicacion')?.hasError('required')) {
+          <span class="error-msg">Seleccione su ubicación!</span>
+          }
+          <div id="map"></div>
+
+          <label>Tipo de Hogar</label>
+          <select formControlName="tipohogar">
+            <option value="" disabled selected>Selecciona tipo de hogar</option>
+            <option value="Casa">Casa</option>
+            <option value="Departamento">Departamento</option>
+          </select>
+          @if (formHogar.get('tipohogar')?.touched &&
+          formHogar.get('tipohogar')?.hasError('required')) {
+          <span class="error-msg">Seleccione tipo de hogar!</span>
+          }
+
+          <label>Nº Personas</label>
+          <input type="number" formControlName="numpersonas" min="1" />
+          @if (formHogar.get('numpersonas')?.touched &&
+          formHogar.get('numpersonas')?.hasError('required')) {
+          <span class="error-msg">Ingrese el número de personas!</span>
+          }@else if (formHogar.get('numpersonas')?.touched &&
+          formHogar.get('numpersonas')?.hasError('min')) {
+          <span class="error-msg">El número de personas debe ser mayor a 0!</span>
+          }
+
+          <div class="buttons-row">
+            <button class="next-btn" (click)="siguiente()">
+              @if (hogarCreado) { Siguiente } @else { Guardar Hogar }
+            </button>
+          </div>
+
+          <p class="register-text">
+            ¿Ya tienes una cuenta? <a routerLink="/login">Inicia Sesión</a>
+          </p>
+        </form>
+      </mat-step>
+
+      <mat-step [stepControl]="formCuenta" label="Cuenta">
+        <form [formGroup]="formCuenta" class="stepper-form">
+          <label>Hogar asociado</label>
+          <select formControlName="hogar">
+            <option value="" disabled selected>Selecciona un hogar</option>
+            @for (h of listaHogares; track h.idHogar) {
+            <option [value]="h.idHogar">{{ h.tipohogar }} - {{ h.distrito }}</option>
+            }
+          </select>
+          @if (formCuenta.get('hogar')?.touched && formCuenta.get('hogar')?.hasError('required')) {
+          <span class="error-msg">Seleccione su hogar!</span>
+          }
+
+          <label>Correo</label>
+          <input formControlName="correo" type="email" placeholder="Ingresa tu correo" />
+          @if (formCuenta.get('correo')?.touched && formCuenta.get('correo')?.hasError('required'))
+          {
+          <span class="error-msg">Ingrese su correo!</span>
+          }@if (formCuenta.get('correo')?.touched &&
+          formCuenta.get('correo')?.hasError('maxlength')) {
+          <span class="error-msg">El número máximo de caracteres es de 50!</span>
+          }@if (formCuenta.get('correo')?.touched &&
+          formCuenta.get('correo')?.hasError('faltaArroba')) {
+          <span class="error-msg">Falta el @ en el correo!</span>
+          }@if (formCuenta.get('correo')?.touched &&
+          formCuenta.get('correo')?.hasError('faltaDominio')) {
+          <span class="error-msg">Falta un dominio válido (ej: .com, .pe)!</span>
+          }
+
+          <label>Usuario</label>
+          <input formControlName="username" placeholder="Nombre de usuario" />
+          @if (formCuenta.get('username')?.touched &&
+          formCuenta.get('username')?.hasError('required')) {
+          <span class="error-msg">Ingrese su nombre de usuario!</span>
+          }@if (formCuenta.get('username')?.touched &&
+          formCuenta.get('username')?.hasError('maxlength')) {
+          <span class="error-msg">El número máximo de caracteres es de 50!</span>
+          }
+
+          <label>Contraseña</label>
+          <input formControlName="password" type="password" placeholder="Contraseña" />
+          @if (formCuenta.get('password')?.touched &&
+          formCuenta.get('password')?.hasError('required')) {
+          <span class="error-msg">Ingrese su contraseña!</span>
+          }@if (formCuenta.get('password')?.touched &&
+          formCuenta.get('password')?.hasError('maxlength')) {
+          <span class="error-msg">El número máximo de caracteres es de 100!</span>}
+          @if (formCuenta.get('password')?.hasError('minlength')){<span class="error-msg">El número minimo de caracteres es 8</span>}
+          
+
+          <div class="buttons-row">
+            <button class="back-btn" matStepperPrevious>Atrás</button>
+            <button class="next-btn" (click)="registrarUsuario()">Guardar Usuario</button>
+          </div>
+        </form>
+      </mat-step>
+
+      <mat-step [stepControl]="formPerfil" label="Perfil">
+        <form [formGroup]="formPerfil" class="stepper-form">
+          <label>Usuario:</label>
+          <div class="info-box" formControlName="usuario">
+            {{ usuarioCreado?.username }} ({{ usuarioCreado?.correo }})
+          </div>
+          @if (formPerfil.get('usuario')?.touched &&
+          formPerfil.get('usuario')?.hasError('required')) {
+          <span class="error-msg">Seleccione su cuenta!</span>
+          }
+
+          <label>Nombres y Apellidos</label>
+          <input formControlName="nombre" placeholder="Nombre Completo" />
+          @if (formPerfil.get('nombre')?.touched && formPerfil.get('nombre')?.hasError('required'))
+          {
+          <span class="error-msg">Ingrese su nombre completo!</span>
+          }@if (formPerfil.get('nombre')?.touched &&
+          formPerfil.get('nombre')?.hasError('maxlength')) {
+          <span class="error-msg">El número máximo de caracteres es de 50!</span>
+          } 
+   
+          <mat-label>Fecha de nacimiento</mat-label>
+          <input matInput [matDatepicker]="picker1" formControlName="edad" [max]="today" />
+          <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+          <mat-datepicker #picker1></mat-datepicker>
+          
+          <label>Género</label>
+          <select formControlName="genero">
+            <option value="Masculino">Masculino</option>
+            <option value="Femenino">Femenino</option>
+            <option value="Otro">Otro</option>
+          </select>
+          @if (formPerfil.get('genero')?.touched && formPerfil.get('genero')?.hasError('required'))
+          {
+          <span class="error-msg">Seleccione su género!</span>
+          }@if (formPerfil.get('genero')?.touched &&
+          formPerfil.get('genero')?.hasError('maxlength')) {
+          <span class="error-msg">El número máximo de caracteres es de 50!</span>
+          }
+
+          <label>Teléfono</label>
+          <input formControlName="telefono" placeholder="Ej: 989 767 656" />
+          @if (formPerfil.get('telefono')?.touched &&
+          formPerfil.get('telefono')?.hasError('required')) {
+          <span class="error-msg">Ingrese su teléfono!</span>
+          }@if (formPerfil.get('telefono')?.touched &&
+          formPerfil.get('telefono')?.hasError('pattern')) {
+          <span class="error-msg">El teléfono debe tener 9 dígitos numéricos!</span>
+          }
+
+          <div class="buttons-row">
+            <button class="back-btn" matStepperPrevious>Atrás</button>
+            <button class="next-btn" (click)="registrar()">Finalizar Registro</button>
+          </div>
+        </form>
+      </mat-step>
+    </mat-stepper>
+  </div>
+</div>

@@ -1,0 +1,76 @@
+<div class="container">
+  <div style="text-align: center; margin: 5%">
+    <h2>{{ edicion ? 'Edición de Usuario' : 'Registrar usuario' }}</h2>
+  </div>
+
+  <div style="text-align: center; margin: 5%">
+    <form [formGroup]="form" (ngSubmit)="aceptar()">
+      @if (edicion) {
+      <mat-form-field>
+        <mat-label>ID</mat-label>
+        <input matInput formControlName="codigo" readonly="true" />
+        <mat-error> @if (form.get('id')?.hasError('required')) { Ingrese ID!! } </mat-error>
+      </mat-form-field>
+      }
+
+      <br />
+      <mat-form-field>
+        <mat-label>Hogar</mat-label>
+        <mat-select formControlName="FKHogar">
+          @for (hogar of listaHogares; track hogar) {
+          <mat-option [value]="hogar.idHogar">{{ hogar.tipohogar }}</mat-option>
+          }
+        </mat-select>
+        <mat-error>
+          @if (form.get('FKHogar')?.hasError('required')) { Ingrese su hogar! }
+        </mat-error>
+      </mat-form-field>
+      
+      <br />
+
+      <mat-form-field>
+        <mat-label>Username</mat-label>
+        <input matInput formControlName="nombre" />
+        <mat-error>
+          @if (form.get('nombre')?.hasError('required')) { Ingrese su username! }
+        </mat-error>
+      </mat-form-field>
+      <br />
+
+      <mat-form-field>
+        <mat-label>Correo</mat-label>
+        <input matInput formControlName="correoele" type="email" />
+        <mat-error>
+          @if (form.get('correoele')?.hasError('required')) { ¡Ingrese su correo! } 
+          @if (form.get('correoele')?.hasError('faltaArroba')) { Falta el @ en el correo. } 
+          @if (form.get('correoele')?.hasError('faltaDominio')) { Falta un dominio válido (ej: .com,
+          .pe). }
+        </mat-error>
+      </mat-form-field>
+      <br />
+
+      <mat-form-field>
+        <mat-label>Password</mat-label>
+        <input matInput type="password" formControlName="contra" />
+        <mat-error>
+          @if (form.get('contra')?.hasError('required')) { Ingrese su contraseña! }
+        </mat-error>
+      </mat-form-field>
+      <br />
+
+      <mat-label>Estado</mat-label>
+      <mat-radio-group aria-label="Select an option" formControlName="estad">
+        <mat-radio-button [value]="true">Activo</mat-radio-button>
+        <mat-radio-button [value]="false">No activo</mat-radio-button>
+        <mat-error>
+          @if (form.get('estad')?.hasError('required')) { Ingrese su estado! }
+        </mat-error>
+      </mat-radio-group>
+      <br />
+
+      <div style="margin-top: 20px">
+        <button mat-raised-button color="primary" type="submit">{{ edicion ? 'Editar' : 'Registrar' }}</button>
+      </div>
+    </form>
+  </div>
+</div>

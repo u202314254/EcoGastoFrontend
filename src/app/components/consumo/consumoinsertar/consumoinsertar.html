@@ -1,0 +1,91 @@
+<div class="container">
+  <div style="text-align: center; margin: 5%">
+    <h2>{{ edicion ? 'Edición de Consumo' : 'Registrar Consumo' }}</h2>
+  </div>
+  <div style="text-align: center; margin: 5%">
+    <form [formGroup]="form" (submit)="aceptar()" class="example-form">
+      @if (edicion) {
+      <mat-form-field class="example-full-width">
+        <mat-label>ID:</mat-label>
+        <input matInput formControlName="codigo" readonly="true" />
+        <mat-error> @if (form.get('codigo')?.hasError('required')) { Ingrese ID!! } </mat-error>
+      </mat-form-field>
+      }
+      <br />
+
+      <mat-form-field>
+        <mat-label>Usuario</mat-label>
+        <mat-select formControlName="FKUsuario">
+          @for (u of listaUsuarios; track u) {
+          <mat-option [value]="u.idUsuario">{{ u.username }}</mat-option>
+          }
+        </mat-select>
+        <mat-error>
+          @if (form.get('FKUsuario')?.hasError('required')) { Ingrese el usuario! }
+        </mat-error>
+      </mat-form-field>
+      <br />
+
+      <mat-form-field>
+        <mat-label>Recurso</mat-label>
+        <mat-select formControlName="FKRecurso">
+          @for (r of listaRecursos; track r) {
+          <mat-option [value]="r.idRecurso">{{ r.nombreRecurso }}</mat-option>
+          }
+        </mat-select>
+        <mat-error>
+          @if (form.get('FKRecurso')?.hasError('required')) { Ingrese el tipo de recurso! }
+        </mat-error>
+      </mat-form-field>
+      <br />
+
+      <mat-form-field>
+        <mat-label>Cantidad</mat-label>
+        <input matInput type="number" formControlName="Cantidad" />
+        <mat-error>
+          @if (form.get('Cantidad')?.hasError('required')) { Ingrese cantidad! } @if
+          (form.get('Cantidad')?.hasError('min')) { La cantidad debe ser mayor a 0! }
+        </mat-error>
+      </mat-form-field>
+      <br />
+
+      <mat-form-field>
+        <mat-label>Costo</mat-label>
+        <input matInput type="number" formControlName="Costo" />
+        <mat-error>
+          @if (form.get('Costo')?.hasError('required')) { Ingrese costo! } @if
+          (form.get('Costo')?.hasError('min')) { El costo debe ser mayor a 0! }
+        </mat-error>
+      </mat-form-field>
+      <br />
+
+      <mat-form-field>
+        <mat-label>Fecha</mat-label>
+        <input matInput [matDatepicker]="picker" formControlName="Fecha" [min]="today" />
+        <mat-hint>MM/DD/YYYY</mat-hint>
+        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+
+        <mat-error>
+          @if (form.get('Fecha')?.hasError('required')) { Ingrese fecha! } @if
+          (form.get('Fecha')?.hasError('matDatepickerMin')) { La fecha no puede ser antigua! }
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field >
+        <mat-label>Descripción</mat-label>
+        <textarea matInput formControlName="Descripcion"></textarea>
+        <mat-error>
+          @if (form.get('Descripcion')?.hasError('required')) { Ingrese descripción! }
+        </mat-error>
+      </mat-form-field>
+      <br />
+
+      <div style="margin-top: 20px">
+        <button mat-raised-button color="primary" type="submit">
+          {{ edicion ? 'Editar' : 'Registrar' }}
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

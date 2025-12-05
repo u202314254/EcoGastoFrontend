@@ -1,0 +1,42 @@
+<h1 class="titulo">Tus notificaciones</h1>
+
+<div class="lista">
+
+  <!-- MENSAJE CUANDO LA LISTA ESTÁ VACÍA -->
+  <div *ngIf="listaNotificaciones.length === 0" class="no-data">
+        <mat-icon>info</mat-icon>  No hay notificaciones registradas.
+    </div>
+
+  <!-- LISTA DE NOTIFICACIONES -->
+  <div class="noti-card" *ngFor="let n of listaNotificaciones">
+
+    <div class="card-header">
+      <h2>
+        {{ n.titulo }}
+        <span class="estado" [class.leido]="n.leido">
+          {{ n.leido ? 'Leído' : 'No leído' }}
+        </span>
+      </h2>
+
+      <div class="acciones">
+
+        <!-- EDITAR (cambiar estado leído/no leído) -->
+        <button class="btn-edit" (click)="toggleLeido(n)">
+          <mat-icon>{{ n.leido ? 'visibility_off' : 'visibility' }}</mat-icon>
+        </button>
+
+        <!-- ELIMINAR -->
+        <button class="btn-delete" (click)="eliminar(n.idNotificacion)">
+          <mat-icon>delete</mat-icon>
+        </button>
+
+      </div>
+    </div>
+
+    <p class="mensaje">{{ n.descripcion }}</p>
+
+    <span class="fecha">{{ n.fecha | date:'short' }}</span>
+
+  </div>
+
+</div>

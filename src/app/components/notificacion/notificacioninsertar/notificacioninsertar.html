@@ -1,0 +1,74 @@
+<div class="container">
+  <div style="text-align: center; margin: 5%">
+    <h2>{{ edicion ? 'Edición de Notificación' : 'Registrar Notificación' }}</h2>
+  </div>
+  <div style="text-align: center; margin: 5%">
+    <form [formGroup]="form" (submit)="aceptar()" class="example-form">
+      @if (edicion) {
+      <mat-form-field class="example-full-width">
+        <mat-label>ID:</mat-label>
+        <input matInput formControlName="codigo" readonly="true" />
+        <mat-error> @if (form.get('id')?.hasError('required')) { Ingrese ID!! } </mat-error>
+      </mat-form-field>
+      } 
+      <br />
+
+      <mat-form-field >
+        <mat-label>Usuario</mat-label>
+        <mat-select formControlName="FKUsuario">
+          @for (u of listaUsuarios; track u) {
+          <mat-option [value]="u.idUsuario">{{ u.username }}</mat-option>
+          }
+        </mat-select>
+        <mat-error>
+          @if (form.get('FKUsuario')?.hasError('required')) { Ingrese el usuario! }
+        </mat-error>
+      </mat-form-field>
+      <br />
+
+      <mat-form-field>
+        <mat-label>Titulo</mat-label>
+        <input matInput formControlName="Titulo" />
+        <mat-error> @if (form.get('Titulo')?.hasError('required')) { Ingrese titulo! }  
+          @if (form.get('Titulo')?.hasError('maxlength')) { El número máximo de caracteres es de 50! }
+        </mat-error>
+      </mat-form-field>
+      <br />
+
+      <mat-form-field >
+        <mat-label>Descripción</mat-label>
+        <textarea matInput formControlName="Descripcion"></textarea>
+        <mat-error>
+          @if (form.get('Descripcion')?.hasError('required')) { Ingrese descripción! }
+          @if (form.get('Descripcion')?.hasError('maxlength')) { El número máximo de caracteres es de 300! }
+        </mat-error>
+      </mat-form-field>
+      <br />
+
+      <mat-form-field>
+        <mat-label>Fecha</mat-label>
+        <input matInput [matDatepicker]="picker1" formControlName="Fecha" [min]="today"/>
+        <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+        <mat-datepicker #picker1></mat-datepicker>
+        <mat-error>
+          @if (form.get('Fecha')?.hasError('required')) { Ingrese la fecha! }
+        </mat-error>
+      </mat-form-field>
+      <br />
+
+      <mat-label>Estado</mat-label>
+      <mat-radio-group aria-label="Select an option" formControlName="Leido">
+        <mat-radio-button [value]="true">Leido</mat-radio-button>
+        <mat-radio-button [value]="false">No leido</mat-radio-button>
+        <mat-error>
+          @if (form.get('Leido')?.hasError('required')) { Ingrese el usuario! }
+        </mat-error>
+      </mat-radio-group>
+      <br />
+
+      <div style="margin-top: 20px">
+        <button mat-raised-button color="primary" type="submit">{{ edicion ? 'Editar' : 'Registrar' }}</button>
+      </div>
+    </form>
+  </div>
+</div>

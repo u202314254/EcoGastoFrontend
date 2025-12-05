@@ -1,0 +1,70 @@
+<div class="container">
+  <div style="text-align: center; margin: 5%">
+    <h2>{{ edicion ? 'Edición de Insignias' : 'Registrar Insignia' }}</h2>
+  </div>
+  <div style="text-align: center; margin: 5%">
+    <form [formGroup]="form" (submit)="aceptar()" class="example-form">
+      @if (edicion) {
+      <mat-form-field class="example-full-width">
+        <mat-label>ID:</mat-label>
+        <input matInput formControlName="codigo" readonly="true" />
+        <mat-error> @if (form.get('id')?.hasError('required')) { Ingrese ID!! } </mat-error>
+      </mat-form-field>
+      }
+      <br />
+
+      <!-- ID de Meta -->
+      <mat-form-field>
+        <mat-label>Meta</mat-label>
+        <mat-select formControlName="FKMeta">
+          @for (m of listaMetas; track m) {
+          <mat-option [value]="m.idMeta">{{ m.nombre }}</mat-option>
+          }
+        </mat-select>
+        <mat-error> @if (form.get('FKMeta')?.hasError('required')) { Ingrese la meta! } </mat-error>
+      </mat-form-field>
+      <br />
+
+      <mat-form-field>
+        <mat-label>Logro</mat-label>
+        <mat-select formControlName="Nombre_logro" required>
+          @for (l of logros; track l) {
+          <mat-option [value]="l.value">{{ l.viewValue }}</mat-option>
+          }
+        </mat-select>
+        <mat-error>
+          @if (form.get('Nombre_logro')?.hasError('required')) { El logro es obligatorio. }
+          @if (form.get('Nombre_logro')?.hasError('maxlength')) { El número máximo de caracteres es de 80! }
+        </mat-error>
+      </mat-form-field>
+      <br />
+
+      <!-- Descripción -->
+      <mat-form-field >
+        <mat-label>Descripción</mat-label>
+        <textarea matInput formControlName="Descripcion"></textarea>
+        <mat-error>
+          @if (form.get('Descripcion')?.hasError('required')) { Ingrese descripción! }
+        </mat-error>
+      </mat-form-field>
+      <br />
+
+      <!-- Puntos -->
+      <mat-form-field>
+        <mat-label>Puntos</mat-label>
+        <input matInput type="number" formControlName="Puntos" />
+        <mat-error>
+          @if (form.get('Puntos')?.hasError('required')) { Ingrese los puntos! } @else if
+          (form.get('Puntos')?.hasError('min')) { El número de puntos no puede ser menor que 0.
+          } @else if (form.get('Puntos')?.hasError('max')) { El número de puntos no puede ser
+          mayor que 10000. }
+        </mat-error>
+      </mat-form-field>
+      <br />
+
+      <div style="margin-top: 20px">
+        <button mat-raised-button color="primary" type="submit">{{ edicion ? 'Editar' : 'Registrar' }}</button>
+      </div>
+    </form>
+  </div>
+</div>

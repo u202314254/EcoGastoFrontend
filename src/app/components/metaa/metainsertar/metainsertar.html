@@ -1,0 +1,104 @@
+<div class="container">
+  <div style="text-align: center; margin: 5%">
+    <h2>{{ edicion ? 'Edición de Meta' : 'Registrar Meta' }}</h2>
+  </div>
+  <div style="text-align: center; margin: 5%">
+    <form [formGroup]="form" (submit)="aceptar()" class="example-form">
+      @if (edicion) {
+      <mat-form-field class="example-full-width">
+        <mat-label>ID:</mat-label>
+        <input matInput formControlName="codigo" readonly="true" />
+        <mat-error> @if (form.get('codigo')?.hasError('required')) { Ingrese ID!! } </mat-error>
+      </mat-form-field>
+      }
+      <br />
+
+      <mat-form-field>
+        <mat-label>Usuario</mat-label>
+        <mat-select formControlName="FKUsuario">
+          @for (u of listaUsuarios; track u) {
+          <mat-option [value]="u.idUsuario">{{ u.username }}</mat-option>
+          }
+        </mat-select>
+        <mat-error>
+          @if (form.get('FKUsuario')?.hasError('required')) { Ingrese el usuario! }
+        </mat-error>
+      </mat-form-field>
+      <br />
+
+      <mat-form-field>
+        <mat-label>Recurso</mat-label>
+        <mat-select formControlName="FKRecurso">
+          @for (r of listaRecursos; track r) {
+          <mat-option [value]="r.idRecurso">{{ r.nombreRecurso }}</mat-option>
+          }
+        </mat-select>
+        <mat-error>
+          @if (form.get('FKRecurso')?.hasError('required')) { Ingrese el recurso! }
+        </mat-error>
+      </mat-form-field>
+      <br />
+
+      <mat-form-field>
+        <mat-label>Nombre</mat-label>
+        <input matInput formControlName="Nombre" />
+        <mat-error>
+          @if (form.get('Nombre')?.hasError('required')) { Ingrese el nombre! }
+          @if (form.get('Nombre')?.hasError('maxlength')) { El número máximo de caracteres es de 50! }
+        </mat-error>
+      </mat-form-field>
+      <br />
+
+      <mat-label>Estado</mat-label>
+      <mat-radio-group aria-label="Select an option" formControlName="Estado">
+        <mat-radio-button [value]="true">Completada</mat-radio-button>
+        <mat-radio-button [value]="false">Incompleta</mat-radio-button>
+        <mat-error>
+          @if (form.get('Estado')?.hasError('required')) { Ingrese su estado! }
+        </mat-error>
+      </mat-radio-group>
+      <br />
+
+      <mat-form-field>
+        <mat-label>Fecha Inicio</mat-label>
+        <input matInput [matDatepicker]="picker1" formControlName="Fechainicio" [min]="today" />
+        <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+        <mat-datepicker #picker1></mat-datepicker>
+        <mat-error>
+          @if (form.get('Fechainicio')?.hasError('required')) { Ingrese fecha de inicio! } @if
+          (form.get('Fechainicio')?.hasError('fechaPasada')) { La fecha de inicio no puede ser
+          pasada! }
+        </mat-error>
+      </mat-form-field>
+      <br />
+
+      <mat-form-field>
+        <mat-label>Fecha Fin</mat-label>
+        <input matInput [matDatepicker]="picker2" formControlName="Fechafin" [min]="today" />
+        <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+        <mat-datepicker #picker2></mat-datepicker>
+        <mat-error>
+          @if (form.get('Fechafin')?.hasError('required')) { Ingrese fecha de fin! } @if
+          (form.get('Fechafin')?.hasError('menorQueInicio')) { La fecha de fin debe ser posterior a
+          la fecha de inicio! }
+        </mat-error>
+      </mat-form-field>
+      <br />
+
+      <mat-form-field>
+        <mat-label>Progreso</mat-label>
+        <input matInput type="number" formControlName="Progreso" />
+        <mat-error>
+          @if (form.get('Progreso')?.hasError('required')) { Ingrese el progreso! }  @if
+          (form.get('Progreso')?.hasError('min')) { El progreso no puede ser menor que 0%. } @if
+          (form.get('Progreso')?.hasError('max')) { El progreso no puede ser mayor que 100%. }
+        </mat-error>
+      </mat-form-field>
+      <br />
+
+      <div style="margin-top: 20px">
+        <button mat-raised-button color="primary" type="submit">{{ edicion ? 'Editar' : 'Registrar' }}</button>
+      </div>
+    </form>
+  </div>
+</div>

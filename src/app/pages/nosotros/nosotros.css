@@ -1,0 +1,319 @@
+/* ---------------------------------------------------
+   NAVBAR
+----------------------------------------------------- */
+.navbar {
+  width: 100%;
+  background: #ffffff;
+  border-bottom: 0.5px solid #000000;
+  position: sticky; /* Opcional: para que se quede fija arriba */
+  top: 0;
+  z-index: 1000;
+}
+
+.nav-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 16px 32px;
+  display: flex;
+  justify-content: flex-start; 
+  align-items: center;
+  gap: 150px; 
+}
+
+.logo {
+  font-size: 24px;
+  font-weight: 700;
+  color: #000000;
+  text-decoration: none;
+}
+
+.links {
+  display: flex;
+  gap: 48px;
+  font-size: 15px;
+}
+
+.links a {
+  text-decoration: none;
+  color: #000000;
+  transition: 0.2s ease;
+}
+
+.links a:hover,
+.active {
+  color: #22c55e;
+  font-weight: 600;
+}
+
+.actions {
+  display: flex;
+  gap: 14px;
+}
+
+.btn-outline {
+  border: 1px solid rgb(0, 0, 0);
+  padding: 10px 26px;
+  border-radius: 999px;
+  border-width: 2.5px;
+  font-size: 14px;
+  text-decoration: none;
+  color: rgb(0, 0, 0);
+  font-weight: 550;
+}
+
+.btn-filled {
+  background: #9FE870;
+  padding: 10px 26px;
+  border-radius: 999px;
+  font-size: 14px;
+  text-decoration: none;
+  color: #ffffff;
+  font-weight: 550;
+  align-content: center;
+}
+
+/* ---------------------------------------------------
+   GENERAL PAGE
+----------------------------------------------------- */
+html, body {
+  height: 100%;
+  margin: 0;
+  font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+
+.page-background {
+  min-height: calc(100vh - 80px); 
+  background-color: #ffffff; 
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 32px;
+}
+
+/* ---------------------------------------------------
+   HERO SECTION
+----------------------------------------------------- */
+.hero {
+  max-width: 1280px;
+  margin: auto;
+  padding-top: 120px;
+  padding-bottom: 80px; /* Añadido espacio abajo */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 60px;
+  background-color: #ffffff;
+  position: relative; 
+}
+
+.hero-up {
+  position: absolute;
+  top: 50px; /* Ajustado para que no choque con navbar */
+  left: 0;                  
+  background-color: #ECFAE2;
+  color: #163300;
+  padding: 20px 22px;
+  border-radius: 999px;
+  font-weight: 500;
+  font-size: 18px;
+  width: fit-content;
+}
+
+.hero-left {
+  width: 50%;
+}
+
+.hero-left h1 {
+  color: rgb(0, 0, 0);
+  font-size: 54px;         
+  line-height: 1.15;
+  font-weight: 800;
+  margin-bottom: 20px;
+}
+
+.hero-left p {
+  margin-top: 16px;
+  margin-bottom: 30px;
+  font-size: 20px;
+  color: #000000;
+  max-width: 90%;
+}
+
+.hero-buttons {
+  display: flex;
+  gap: 24px;
+  margin-top: 30px;
+}
+
+.btn-primary {
+  background: #22c55e;
+  padding: 14px 36px;
+  border-radius: 999px;
+  color: #ffffff;
+  font-size: 17px;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.hero-right img {
+  width: 520px;
+  height: auto;
+  object-fit: contain;
+  display: block;
+  border-radius: 15px;
+}
+
+/* ---------------------------------------------------
+   ANIMACIONES SCROLL
+----------------------------------------------------- */
+.hidden-element {
+  opacity: 0;
+  transform: translateY(50px);
+  transition: all 0.8s ease-out;
+}
+
+.show-element {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ---------------------------------------------------
+   SECCIÓN VISIÓN
+----------------------------------------------------- */
+.vision-section {
+  padding: 100px 0;
+  background-color: #f9fdf5; /* Fondo suave para separar secciones */
+}
+
+.vision-card.main-vision {
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto 60px auto;
+}
+
+.vision-card h2 {
+  font-size: 42px;
+  font-weight: 800;
+  color: #163300;
+  margin-bottom: 20px;
+}
+
+.vision-card p {
+  font-size: 18px;
+  line-height: 1.6;
+  color: #444;
+}
+
+.values-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+}
+
+.value-item {
+  background: white;
+  padding: 30px;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+  text-align: center;
+  border: 1px solid #ECFAE2;
+  transition: transform 0.3s ease;
+}
+
+.value-item:hover {
+  transform: translateY(-5px);
+}
+
+.value-item h3 {
+  font-size: 20px;
+  color: #163300;
+  margin-bottom: 10px;
+}
+
+/* ---------------------------------------------------
+   SECCIÓN EQUIPO (CARAS)
+----------------------------------------------------- */
+.team-section {
+  padding: 100px 0;
+  background-color: #ffffff;
+}
+
+.team-header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.badge {
+  background-color: #ECFAE2;
+  color: #163300;
+  padding: 8px 16px;
+  border-radius: 999px;
+  font-weight: 600;
+  font-size: 14px;
+  text-transform: uppercase;
+}
+
+.team-header h2 {
+  font-size: 42px;
+  font-weight: 800;
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+.team-grid {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+
+.team-member {
+  text-align: center;
+  width: 250px;
+}
+
+/* ESTILO DE LA FOTO */
+.photo-placeholder {
+  width: 220px;
+  height: 220px;
+  background-color: #e0e0e0;
+  border-radius: 20px;
+  margin: 0 auto 20px auto;
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.photo-placeholder:hover {
+  transform: scale(1.02);
+  box-shadow: 0 15px 30px rgba(34, 197, 94, 0.2);
+}
+
+.photo-placeholder img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.placeholder-text {
+  color: #888;
+  font-weight: 600;
+}
+
+.team-member h3 {
+  font-size: 20px;
+  font-weight: 700;
+  margin: 0 0 5px 0;
+  color: #000;
+}
+
+.team-member .role {
+  color: #22c55e;
+  font-weight: 600;
+  font-size: 15px;
+}

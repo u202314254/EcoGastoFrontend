@@ -1,0 +1,46 @@
+<div class="container">
+    <div style="text-align: center; margin: 5%">
+    <h2>{{ edicion ? 'Edición de Rol' : 'Registrar Rol' }}</h2>
+    </div>
+    <div style="text-align: center; margin: 5%">
+    <form [formGroup]="form" (submit)="aceptar()" class="example-form">
+        @if (edicion) {
+        <mat-form-field class="example-full-width">
+        <mat-label>ID:</mat-label>
+        <input matInput formControlName="codigo" readonly="true" />
+        <mat-error> @if (form.get('id')?.hasError('required')) { Ingrese ID!! } </mat-error>
+        </mat-form-field>
+        }
+
+        <br />
+
+        <mat-form-field>
+        <mat-label>Tipo de rol</mat-label>
+        <mat-select formControlName="Tipo">
+        @for (t of tipo; track t) {
+        <mat-option [value]="t.value">{{ t.viewValue }}</mat-option>
+        }
+        </mat-select>
+        <mat-error> @if (form.get('Tipo')?.hasError('required')) { Ingrese tipo!! } </mat-error>
+        </mat-form-field>
+        <br />
+
+        <mat-form-field>
+        <mat-label>Usuario</mat-label>
+        <mat-select formControlName="FKUsuario">
+        @for (u of listaUsuarios; track u) {
+        <mat-option [value]="u.idUsuario">{{ u.username }}</mat-option>
+        }
+        </mat-select>
+        <mat-error>
+        @if (form.get('FKUsuario')?.hasError('required')) { Ingrese el usuario! }
+        </mat-error>
+        </mat-form-field>
+        <br />
+
+        <div style="margin-top: 20px">
+        <button mat-raised-button color="primary" type="submit">{{ edicion ? 'Editar' : 'Registrar' }}</button>
+        </div>
+    </form>
+    </div>
+</div>

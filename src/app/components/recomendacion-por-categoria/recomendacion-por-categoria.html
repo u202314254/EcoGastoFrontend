@@ -1,0 +1,37 @@
+<div class="container">
+  <div class="grafico1">
+
+    <h2>Recomendaciones por categoría</h2>
+
+    <!-- SELECT DE CATEGORÍAS -->
+    <mat-form-field appearance="fill" style="width: 300px; margin-bottom: 20px;">
+      <mat-label>Seleccione una categoría</mat-label>
+      <mat-select [(value)]="categoriaSeleccionada" (selectionChange)="onCategoriaChange()">
+        <mat-option *ngFor="let cat of categorias" [value]="cat.value">
+          {{ cat.viewValue }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    @if(hasData){
+      <div style="text-align: center" class="chart-container">
+        <canvas
+          baseChart
+          [datasets]="barChartData"
+          [labels]="barChartLabels"
+          [options]="barChartOptions"
+          [legend]="barChartLegend"
+          [type]="barChartType">
+        </canvas>
+      </div>
+    }
+
+    @if(!hasData){
+      <div class="no-data">
+        <mat-icon class="no-data-icon">info_outline</mat-icon>
+        <p class="no-data-message">No hay datos disponibles para mostrar.</p>
+      </div>
+    }
+
+  </div>
+</div>

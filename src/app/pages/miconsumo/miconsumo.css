@@ -1,0 +1,233 @@
+.contenedor-principal {
+  width: 90%;
+  margin: auto;
+  margin-bottom: 50px;
+}
+
+/* BOTÓN ABRIR FORM */
+.btn-toggle {
+  padding: 8px 15px;
+  background: #2E7D32;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.btn-toggle:hover {
+  background: #1B5E20;
+}
+
+/* ============================= */
+/* FORMULARIO ESTILO CARD VERDE */
+/* ============================= */
+
+.form-card {
+  background: #fff;
+  border-radius: 14px;
+  padding: 22px;
+  margin-top: 15px;
+  box-shadow: 0 2px 10px rgba(0, 128, 0, 0.18);
+  border-left: 6px solid #2E7D32;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 15px;
+}
+
+.form-grid .full {
+  grid-column: span 2;
+}
+
+.actions {
+  margin-top: 20px;
+}
+
+.btn-save {
+  background: #2E7D32;
+  color: white;
+  padding: 8px 15px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.btn-save:hover {
+  background: #1B5E20;
+}
+
+.btn-cancel {
+  margin-left: 10px;
+  background: #d32f2f;
+  color: white;
+  padding: 8px 15px;
+  border: none;
+  border-radius: 6px;
+}
+
+.btn-cancel:hover {
+  background: #9a0007;
+}
+
+/* ============================= */
+/* GRID PRINCIPAL */
+/* ============================= */
+
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) minmax(260px, 1fr);
+  gap: 24px;
+  width: 100%;
+}
+
+.charts-column,
+.stats-column {
+  padding: 10px;
+}
+
+/* ============================= */
+/* CHART CARDS */
+/* ============================= */
+
+.card {
+  background: #fff;
+  border-radius: 18px;
+  padding: 16px 18px;
+  border: 1px solid #e9e9e9;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.04);
+  margin-bottom: 18px;
+}
+
+.chart-card {
+  border-radius: 22px !important;
+  padding: 22px !important;
+}
+
+.chart-wrapper canvas {
+  border: 1px solid #e7e7e7;
+  border-radius: 16px;
+  padding: 10px;
+  background: #fff;
+}
+
+/* ============================= */
+/* KPI CARDS */
+/* ============================= */
+
+.stat-card {
+  background: #fff;
+  border-radius: 18px;
+  padding: 22px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.04);
+  border-left: 6px solid #2E7D32;
+  /* estilo verde */
+}
+
+.big-number {
+  font-size: 36px;
+  font-weight: 800;
+  margin: 0 0 6px 0;
+  color: #000;
+}
+
+.big-number.positive {
+  color: #2E7D32;
+}
+
+/* ============================= */
+/* CARDS DE CONSUMOS (ESTILO META-CARD) */
+/* ============================= */
+
+.contenedor-cards {
+  margin-top: 25px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 18px;
+}
+
+.card-consumo {
+  background: #fff;
+  padding: 18px;
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(0, 128, 0, 0.15);
+  border-left: 5px solid #2E7D32;
+  /* línea verde igual al meta-card */
+  transition: 0.3s ease;
+}
+
+.card-consumo:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 14px rgba(0, 128, 0, 0.25);
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.card-header h3 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 600;
+  color: #2E7D32;
+}
+
+.btn-icon {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+}
+
+.btn-icon mat-icon {
+  font-size: 22px;
+  color: #2E7D32;
+}
+
+.btn-icon:hover mat-icon {
+  color: #1B5E20;
+}
+
+/* ELIMINAR */
+.btn-icon.eliminar mat-icon {
+  color: #b71c1c;
+}
+
+.btn-icon.eliminar:hover mat-icon {
+  color: #d32f2f;
+}
+
+.card-consumo p {
+  margin: 4px 0;
+  font-size: 14px;
+}
+
+/* ============================= */
+/* RESPONSIVE */
+/* ============================= */
+
+@media (max-width: 1000px) {
+  .dashboard-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.no-data {
+    text-align: center;         
+    font-size: 1.5rem;           
+    color: #666;                 
+    margin: 2rem 0;              
+    font-weight: 500;    
+}
+
+/* SNACKBAR VERDE ECOGASTO */
+.snackbar-eco {
+  background: #2E7D32 !important;
+  color: white !important;
+  font-weight: 600;
+  text-align: center;
+}

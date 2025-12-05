@@ -1,0 +1,32 @@
+<div class="container">
+  <div style="text-align: center; margin: 5%">
+    <h2>{{ edicion ? 'Edición de Recurso' : 'Registrar Recurso' }}</h2>
+  </div>
+  <div style="text-align: center; margin: 5%">
+    <form [formGroup]="form" (submit)="aceptar()" class="example-form">
+      @if (edicion) {
+      <mat-form-field class="example-full-width">
+        <mat-label>ID:</mat-label>
+        <input matInput formControlName="codigo" readonly="true" />
+        <mat-error> @if (form.get('id')?.hasError('required')) { Ingrese ID!! } </mat-error>
+      </mat-form-field>
+      }
+      <br />
+      <mat-form-field>
+        <mat-label>Tipo de recurso</mat-label>
+        <mat-select formControlName="nombre">
+          @for (r of tiporecurso; track r) {
+          <mat-option [value]="r.value">{{ r.viewValue }}</mat-option>
+          }
+        </mat-select>
+        <mat-error> @if (form.get('nombre')?.hasError('required')) { Ingrese recurso!! } </mat-error>
+      </mat-form-field>
+      <br />
+
+      <div style="margin-top: 20px">
+        <button mat-raised-button color="primary" type="submit">{{ edicion ? 'Editar' : 'Registrar' }}</button>
+      </div>
+    </form>
+  </div>
+</div>
+

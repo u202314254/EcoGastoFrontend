@@ -1,0 +1,66 @@
+<div class="container">
+<div style="text-align: center; margin: 5%">
+    <h2>{{ edicion ? 'Edición de Seguridad' : 'Registrar Seguridad' }}</h2>
+  </div>
+  <div style="text-align: center; margin: 5%">
+    <form [formGroup]="form" (submit)="aceptar()" class="example-form">
+      @if (edicion) {
+      <mat-form-field class="example-full-width">
+        <mat-label>ID:</mat-label>
+        <input matInput formControlName="codigo" readonly="true" />
+        <mat-error> @if (form.get('id')?.hasError('required')) { Ingrese ID!! } </mat-error>
+      </mat-form-field>
+      }
+      <br />
+
+      <mat-form-field>
+        <mat-label>Usuario</mat-label>
+        <mat-select formControlName="FKUsuario">
+          @for (u of listaUsuarios; track u) {
+          <mat-option [value]="u.idUsuario">{{ u.username }}</mat-option>
+          }
+        </mat-select>
+        <mat-error>
+          @if (form.get('FKUsuario')?.hasError('required')) { Ingrese el usuario! }
+        </mat-error>
+      </mat-form-field>
+      <br />
+
+      <mat-form-field>
+        <mat-label>Ultimo Login</mat-label>
+        <input matInput [matDatepicker]="picker1" formControlName="ultimoLo" [min]="today"/>
+        <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+        <mat-datepicker #picker1></mat-datepicker>
+        <mat-error>
+          @if (form.get('ultimoLo')?.hasError('required')) { Ingrese la fecha! }
+        </mat-error>
+      </mat-form-field>
+      <br />
+
+      <mat-form-field>
+        <mat-label>ID Dispositivo</mat-label>
+        <input matInput formControlName="ip" />
+        <mat-error> @if (form.get('ip')?.hasError('required')) { Ingrese el id! } 
+          @else if (form.get('ip')?.hasError('maxlength')) { El número máximo de caracteres es de 50! }
+        </mat-error>
+      </mat-form-field>
+      <br />
+
+      <mat-form-field>
+        <mat-label>Intentos Fallidos</mat-label>
+        <input matInput formControlName="intentos" type="number" />
+        <mat-error>
+          @if (form.get('intentos')?.hasError('required')) { Ingrese los intentos fallidos! } 
+          @else if (form.get('intentos')?.hasError('min')) { El número de intentos no puede ser menor que
+          0. } @else if (form.get('intentos')?.hasError('max')) { El número de intentos no puede ser
+          mayor que 10. }
+        </mat-error>
+      </mat-form-field>
+      <br />
+
+      <div style="margin-top: 20px">
+        <button mat-raised-button color="primary" type="submit">{{ edicion ? 'Editar' : 'Registrar' }}</button>
+      </div>
+    </form>
+  </div>
+</div>

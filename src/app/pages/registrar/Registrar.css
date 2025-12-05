@@ -1,0 +1,280 @@
+/* CONTENEDOR PRINCIPAL */
+.register-wrapper {
+  height: 100vh;
+  background: #0d1b12;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative; 
+}
+
+.register-content {
+  text-align: center;
+  width: 450px;
+  color: white;
+  font-family: 'Inter', sans-serif;
+  padding: 20px;
+  
+  /* Scroll oculto pero funcional */
+  max-height: 95vh;
+  overflow-y: auto;
+  scrollbar-width: none; 
+  -ms-overflow-style: none;
+}
+
+.register-content::-webkit-scrollbar {
+  display: none;
+}
+
+/* --- NUEVO: BOTÓN DE CERRAR (X) --- */
+.close-button {
+  position: absolute;
+  top: 30px;        
+  left: 30px;        
+  font-size: 28px;   
+  font-weight: bold;
+  color: #a0b0a8;    
+  text-decoration: none;
+  cursor: pointer;
+  transition: color 0.2s ease-in-out;
+  z-index: 1001;      
+}
+
+.close-button:hover {
+  color: #8cff66;    
+}
+
+/* --- HEADER MODIFICADO --- */
+.header {
+  margin-bottom: 15px;
+}
+
+/* Contenedor flexible para alinear Logo y Título */
+.brand-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px; 
+  margin-bottom: 5px;
+}
+
+.logo {
+  width: 32px; 
+  height: auto;
+  margin: 0;
+}
+
+.title {
+  font-size: 32px;
+  font-weight: 700;
+  margin: 0;
+}
+
+.subtitle {
+  font-size: 18px;
+  color: #a0b0a8;
+  margin-top: 0;
+  margin-bottom: 20px;
+}
+
+/* --- MAPA BLINDADO --- */
+#map {
+  height: 300px;
+  width: 100%;
+  border-radius: 6px;
+  margin-bottom: 15px;
+  border: 1px solid #2a4535;
+  
+  /* ESTO EVITA QUE SE SALGA */
+  overflow: hidden; 
+  position: relative;
+  z-index: 0;
+  display: block;
+}
+
+/* --- FORMULARIOS --- */
+.stepper-form {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  width: 100%;
+  padding: 5px 0;
+}
+
+label {
+  margin-bottom: 6px;
+  margin-top: 10px;
+  font-size: 14px;
+  color: #d1d1d1;
+  font-weight: 500;
+}
+
+input, select, .info-box {
+  background: #0f2419;
+  border: 1px solid transparent;
+  padding: 12px;
+  border-radius: 6px;
+  color: white;
+  margin-bottom: 10px;
+  width: 100%;
+  box-sizing: border-box;
+  font-size: 14px;
+}
+
+input:focus, select:focus {
+  outline: none;
+  border: 1px solid #8cff66;
+}
+
+.info-box {
+  color: #8cff66;
+  margin-bottom: 20px;
+  border: 1px solid #2a4535;
+}
+
+/* --- AUTOCOMPLETADO --- */
+.autocomplete-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.sugerencias-superpuestas {
+  position: absolute;
+  top: 75px;
+  left: 0;
+  background: #1a3326;
+  border: 1px solid #27ae60;
+  border-radius: 0 0 6px 6px;
+  max-height: 150px;
+  overflow-y: auto;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  z-index: 1000; 
+  box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+}
+
+.sugerencias-superpuestas li {
+  padding: 10px 12px;
+  cursor: pointer;
+  color: #e0e0e0;
+  border-bottom: 1px solid #2a4535;
+}
+
+.sugerencias-superpuestas li:hover {
+  background: #27ae60;
+  color: white;
+}
+
+.error-msg {
+  color: #ff6b6b;
+  font-size: 12px;
+  margin-top: -8px;
+  margin-bottom: 8px;
+}
+
+/* --- BOTONES --- */
+.buttons-row {
+  display: flex;
+  gap: 15px;
+  margin-top: 15px;
+  justify-content: space-between;
+  padding-bottom: 10px;
+}
+
+.buttons-row button {
+  flex: 1;
+  height: 45px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: transform 0.1s;
+}
+
+.buttons-row button:active {
+  transform: scale(0.98);
+}
+
+.back-btn {
+  background: transparent;
+  border: 1px solid #ffffff55;
+  border-radius: 6px;
+  color: white;
+}
+
+.next-btn {
+  background: #8cff66;
+  border: none;
+  border-radius: 6px;
+  color: #0d1b12;
+  font-weight: 700;
+}
+
+.back-btn:hover {
+  background: rgba(255,255,255,0.1);
+}
+
+.next-btn:hover {
+  background: #7ae656;
+}
+
+/* --- ESTILOS DEL STEPPER (Overrides) --- */
+::ng-deep .mat-stepper-horizontal, 
+::ng-deep .mat-stepper-vertical {
+  background-color: transparent !important;
+  font-family: 'Inter', sans-serif !important;
+}
+
+::ng-deep .mat-step-header .mat-step-icon-selected,
+::ng-deep .mat-step-header .mat-step-icon-state-edit {
+  background-color: #8cff66 !important;
+  color: #0d1b12 !important;
+  border: none;
+}
+
+::ng-deep .mat-step-header .mat-step-icon {
+  background-color: rgba(140, 255, 102, 0.1) !important;
+  color: #7f8c8d !important;
+}
+
+::ng-deep .mat-step-header .mat-step-label {
+  color: #7f8c8d !important;
+  font-size: 14px;
+}
+
+::ng-deep .mat-step-header .mat-step-label.mat-step-label-selected {
+  color: #fff !important;
+  font-weight: 600;
+}
+
+::ng-deep .mat-stepper-horizontal-line {
+  border-top-color: #2c3e50 !important;
+}
+
+::ng-deep .mat-horizontal-content-container {
+  padding: 0 !important;
+}
+
+/* --- TEXTO DE LOGIN (Ajustado) --- */
+.register-text {
+  margin: auto;
+  margin-top: 12px; 
+  margin-bottom: 0; 
+  font-size: 13px;  
+  color: #a0b0a8;
+}
+
+.register-text a {
+  color: #8cff66;
+  text-decoration: none;
+  font-weight: 600;
+  margin-left: 5px;
+  transition: color 0.2s;
+}
+
+.register-text a:hover {
+  color: #fff;
+  text-decoration: underline;
+}

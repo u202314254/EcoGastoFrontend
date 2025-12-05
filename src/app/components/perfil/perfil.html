@@ -1,0 +1,13 @@
+<div class="layout">
+    <div class="sidebar">
+    <app-menu></app-menu>
+    </div>
+
+    <div class="content">
+    <router-outlet></router-outlet>
+
+    @if (route.children.length === 0) {
+    <app-perfillistar></app-perfillistar>
+    }
+    </div>
+</div>

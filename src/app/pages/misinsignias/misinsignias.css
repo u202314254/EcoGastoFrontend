@@ -1,0 +1,170 @@
+/* CONTENEDOR GENERAL */
+.insignias-wrapper {
+    padding: 20px 40px;
+}
+
+/* TÍTULOS */
+.title {
+    font-size: 28px;
+    font-weight: 700;
+    margin: 0;
+}
+
+.subtitle {
+    margin-top: 6px;
+    font-size: 16px;
+    color: #444;
+}
+
+/* RESUMEN (DONUT + TOTAL + LEYENDA) */
+.resumen-card {
+    margin-top: 25px;
+    background: #fff;
+    border-radius: 18px;
+    padding: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 40px;
+
+    /* ESTILO CARD */
+    border-left: 5px solid #2E7D32;
+    box-shadow: 0 2px 10px rgba(0, 128, 0, 0.15);
+    transition: 0.3s ease;
+}
+
+.resumen-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 4px 14px rgba(0, 128, 0, 0.25);
+}
+
+/* Donut - NO TOCADO */
+.resumen-chart {
+    width: 180px;
+    height: 180px;
+}
+
+/* Lado izquierdo */
+.resumen-left .label {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.resumen-left .total {
+    font-size: 40px;
+    font-weight: 700;
+    margin: 0;
+}
+
+/* LEYENDA */
+.resumen-legend {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.resumen-legend .color {
+    width: 16px;
+    height: 16px;
+    display: inline-block;
+    border-radius: 4px;
+    margin-right: 8px;
+}
+
+.color.agua { background: #00a7ff; }
+.color.luz  { background: #fbc02d; }
+.color.gas  { background: #e53935; }
+
+/* SUBTÍTULO DE SECCIÓN */
+.subtitle2 {
+    margin-top: 35px;
+    font-size: 20px;
+    font-weight: 700;
+}
+
+/* LISTA DE INSIGNIAS */
+.cards-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 22px;
+    margin-top: 15px;
+}
+
+.insignia-card {
+    width: 330px;
+    background: white;
+    border-radius: 20px;
+    padding: 20px;
+    display: flex;
+    gap: 16px;
+
+    /* ESTILO CARD */
+    border-left: 5px solid #2E7D32;
+    box-shadow: 0 2px 10px rgba(0, 128, 0, 0.15);
+    transition: 0.3s ease;
+}
+
+.insignia-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 4px 14px rgba(0, 128, 0, 0.25);
+}
+
+/* ÍCONO */
+.icon-circle {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    background: #eaf7ff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 26px;
+    color: #2E7D32;
+}
+
+/* ÍCONOS LIMPIOS (SIN RECUADRO) */
+.icon-circle mat-icon,
+.delete-btn mat-icon {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    font-size: 26px;
+}
+
+/* TEXTO */
+.info {
+    flex: 1;
+}
+
+.nombre {
+    font-size: 18px;
+    font-weight: 600;
+    margin: 0 0 4px 0;
+}
+
+.recurso {
+    margin: 0 0 10px 0;
+    font-size: 14px;
+    color: #666;
+}
+
+p {
+    margin: 4px 0;
+    font-size: 14px;
+}
+
+strong {
+    font-weight: 600;
+}
+
+.no-data {
+    text-align: center;          
+    font-size: 1.5rem;           
+    color: #666;                
+    margin: 2rem 0;              
+    font-weight: 500;    
+}
+

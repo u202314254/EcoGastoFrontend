@@ -1,0 +1,96 @@
+.titulo {
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 20px;
+  color: #1b1b1b;
+  padding-left: 10px;
+}
+
+.lista {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  padding: 10px;
+}
+
+.noti-card {
+  background: #e9ffe6;
+  border-radius: 14px;
+  padding: 18px;
+  border: 1px solid #cce7cc;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.05);
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.card-header h2 {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 700;
+  color: #1a1a1a;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.estado {
+  font-size: 12px;
+  background: #ffd54f;
+  padding: 3px 8px;
+  border-radius: 8px;
+  color: #4e3100;
+  font-weight: 600;
+}
+
+.estado.leido {
+  background: #a5d6a7;
+  color: #1b5e20;
+}
+
+.acciones {
+  display: flex;
+  gap: 6px;
+}
+
+.btn-edit,
+.btn-delete {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.btn-edit mat-icon {
+  color: #1565c0;
+  font-size: 22px;
+}
+
+.btn-delete mat-icon {
+  color: #c62828;
+  font-size: 22px;
+}
+
+.mensaje {
+  font-size: 15px;
+  margin: 10px 0 5px 0;
+  color: #333;
+}
+
+.fecha {
+  font-size: 13px;
+  color: #555;
+}
+
+.no-data {
+  text-align: center;
+  padding: 25px;
+  font-size: 18px;
+  color: #666;
+  font-weight: 500;
+  border-radius: 12px;
+  background: #f5f5f5;
+  margin-top: 10px;
+}

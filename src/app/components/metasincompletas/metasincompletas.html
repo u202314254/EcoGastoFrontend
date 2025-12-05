@@ -1,0 +1,32 @@
+<div class="container-metas">
+  <h1 class="titulo">Listado de Metas Incompletas</h1>
+
+  <!-- Mensaje cuando no hay metas -->
+  <div *ngIf="!dataSource || dataSource.data.length === 0" class="no-metas">
+    <mat-icon>info</mat-icon> No hay metas incompletas
+  </div>
+
+  <!-- Cards de metas -->
+  <div class="cards-grid" *ngIf="dataSource && dataSource.data.length > 0">
+    <div class="meta-card" *ngFor="let meta of dataSource.data">
+      <div class="card-header">
+        <mat-icon class="card-icon">flag</mat-icon>
+        <h3 class="meta-title">Meta #{{ meta.idMeta }}</h3>
+      </div>
+
+      <div class="card-body">
+        <p><strong>Fecha Inicio:</strong> {{ meta.fechaInicio | date:'dd/MM/yyyy' }}</p>
+        <p><strong>Fecha Fin:</strong> {{ meta.fechaFin | date:'dd/MM/yyyy' }}</p>
+        <p><strong>Estado:</strong> 
+          <span class="estado inactivo">{{ meta.estado ? 'Completada' : 'Incompleta'}}</span>
+        </p>
+      </div>
+
+      <div class="card-footer">
+        <button routerLink="/mismetas" class="btn-detalle">
+          Ver detalle
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,206 @@
+<div class="dashboard-container">
+  <aside class="sidebar" [class.collapsed]="isCollapsed">
+    <div class="sidebar-header">
+      <div class="logo-area">
+        <img
+          src="leaf blanco.png"
+          alt="Logo"
+          class="logo-img"
+          style="filter: invert(1) brightness(0.5)"
+        />
+
+        @if (!isCollapsed) {
+        <span class="logo-text">EcoGasto</span>
+        }
+      </div>
+
+      <button class="toggle-btn" (click)="toggleSidebar()">
+        <mat-icon>{{ isCollapsed ? 'chevron_right' : 'menu_open' }}</mat-icon>
+      </button>
+    </div>
+
+    @if (!isCollapsed) {
+    <div class="search-box">
+      <mat-icon class="search-icon">search</mat-icon>
+      <input type="text" placeholder="Buscar..." />
+    </div>
+    } @if(verificar()){
+    <nav class="nav-links">
+      <button
+        routerLink="/dashboard"
+        routerLinkActive="active"
+        class="nav-item"
+        style="border: none"
+      >
+        <mat-icon class="nav-icon">grid_view</mat-icon>
+
+        @if (!isCollapsed) {
+        <span class="text">Dashboard</span>
+        }
+      </button>
+
+      @if (isClient()) {
+      <button
+        routerLink="/miconsumo"
+        routerLinkActive="active"
+        class="nav-item"
+        style="border: none"
+      >
+        <mat-icon class="nav-icon">person_outline</mat-icon>
+
+        @if (!isCollapsed) {
+        <span class="text">Mi consumo</span>
+        }
+      </button>
+      } @if (isClient()) {
+      <button
+        routerLink="/mismetas"
+        routerLinkActive="active"
+        class="nav-item"
+        style="border: none"
+      >
+        <mat-icon class="nav-icon">calendar_today</mat-icon>
+
+        @if (!isCollapsed) {
+        <span class="text">Metas</span>
+        }
+      </button>
+      } @if (isClient()) {
+      <button
+        routerLink="metasincompletas"
+        routerLinkActive="active"
+        class="nav-item"
+        style="border: none"
+      >
+        <mat-icon class="nav-icon">block</mat-icon>
+
+        @if (!isCollapsed) {
+        <span class="text">Metas incompletas</span>
+        }
+      </button>
+      } @if (isClient()) {
+      <button
+        routerLink="/misrecomendaciones"
+        routerLinkActive="active"
+        class="nav-item"
+        style="border: none"
+      >
+        <mat-icon class="nav-icon">lightbulb_outline</mat-icon>
+
+        @if (!isCollapsed) {
+        <span class="text">Recomendaciones</span>
+        }
+      </button>
+      } @if (isClient()) {
+      <button
+        routerLink="recomendacionporcategoria"
+        routerLinkActive="active"
+        class="nav-item"
+        style="border: none"
+      >
+        <mat-icon class="nav-icon">category</mat-icon>
+
+        @if (!isCollapsed) {
+        <span class="text">Recomendación por Categoria</span>
+        }
+      </button>
+      } @if (isAdmin()) {
+      <button
+        routerLink="/notificacionporusuario"
+        routerLinkActive="active"
+        class="nav-item"
+        style="border: none"
+      >
+        <mat-icon class="nav-icon">security</mat-icon>
+
+        @if (!isCollapsed) {
+        <span class="text">Notificación por Usuario</span>
+        }
+      </button>
+      }@if (isAdmin()) {
+      <button
+        routerLink="/accesossospechosos"
+        routerLinkActive="active"
+        class="nav-item"
+        style="border: none"
+      >
+        <mat-icon class="nav-icon">security</mat-icon>
+
+        @if (!isCollapsed) {
+        <span class="text">Accesos Sospechosos</span>
+        }
+      </button>
+      } @if(isClient()){
+      <button
+        routerLink="/misinsignias"
+        routerLinkActive="active"
+        class="nav-item"
+        style="border: none"
+      >
+        <mat-icon class="nav-icon">verified_user</mat-icon>
+
+        @if (!isCollapsed) {
+        <span class="text">Insignias</span>
+        }</button
+      >} @if(isAdmin() ){
+      <button
+        routerLink="/recomendaciones"
+        routerLinkActive="active"
+        class="nav-item"
+        style="border: none"
+      >
+        <mat-icon class="nav-icon">verified_user</mat-icon>
+        <span class="text">CRUD</span></button
+      >}
+    </nav>
+    }
+    <div class="sidebar-footer">
+      <div class="user-profile">
+        <div class="avatar">
+          {{ usuario.charAt(0) | uppercase }}
+        </div>
+
+        @if (!isCollapsed) {
+        <div class="user-info">
+          <span class="name">{{ usuario }}</span>
+
+          <span class="role-pill">User</span>
+        </div>
+        } @if (!isCollapsed) {
+        <div class="notif-area">
+          <mat-icon routerLink="misnotificaciones" name="notif-icon">notifications_none</mat-icon>
+          <span class="notif-dot"></span>
+          @if (isClient()) {
+          <mat-icon routerLink="/notificacionnoleida" name="notif-icon">
+            mark_email_unread </mat-icon
+          >}
+        </div>
+        }
+      </div>
+
+      <!-- CONTENEDOR DE OPCIONES DE USUARIO -->
+      <div class="user-options">
+        <!-- Configuración -->
+        <a routerLink="/configuracion" class="option-link">
+          <mat-icon>settings</mat-icon>
+          <span>Configuración</span>
+        </a>
+
+        <!-- Rol -->
+        <div class="role-box">
+          <span class="role-label">Rol:</span>
+          <span class="role-value">{{ role }}</span>
+        </div>
+
+        <!-- Cerrar sesión -->
+        <button class="option-link logout-btn" (click)="cerrarSesion()">
+          <mat-icon>logout</mat-icon>
+          <span>Cerrar Sesión</span>
+        </button>
+      </div>
+    </div>
+  </aside>
+  <div class="main-content">
+    <router-outlet></router-outlet>
+  </div>
+</div>

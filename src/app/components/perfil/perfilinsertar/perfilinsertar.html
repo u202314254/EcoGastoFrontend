@@ -1,0 +1,80 @@
+<div class="container">
+  <div style="text-align: center; margin: 5%">
+    <h2>{{ edicion ? 'Edición de Perfil' : 'Registrar Perfil' }}</h2>
+  </div>
+  <div style="text-align: center; margin: 5%">
+    <form [formGroup]="form" (submit)="aceptar()" class="example-form">
+      @if (edicion) {
+      <mat-form-field class="example-full-width">
+        <mat-label>ID:</mat-label>
+        <input matInput formControlName="codigo" readonly="true" />
+        <mat-error> @if (form.get('id')?.hasError('required')) { Ingrese ID!! } </mat-error>
+      </mat-form-field>
+      }
+      <br />
+      <mat-form-field>
+        <mat-label>Usuario</mat-label>
+        <mat-select formControlName="FKUsuario">
+          @for (u of listaUsuarios; track u) {
+          <mat-option [value]="u.idUsuario">{{ u.username }}</mat-option>
+          }
+        </mat-select>
+        <mat-error> @if (form.get('FKUsuario')?.hasError('required')) { Ingrese su usuario! } </mat-error>
+        
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Nombre Completo</mat-label>
+        <input matInput formControlName="name" />
+        <mat-error> @if (form.get('name')?.hasError('required')) { Ingrese su nombre completo! } 
+          @if (form.get('name')?.hasError('maxlength')) { El número máximo de caracteres es de 50! }
+        </mat-error>
+      </mat-form-field>
+      <br />
+
+      <mat-form-field>
+        <mat-label>Edad</mat-label>
+        <input matInput [matDatepicker]="picker" formControlName="Edad" [max]="today" />
+        <mat-hint>MM/DD/YYYY</mat-hint>
+        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+
+        <mat-error>
+          @if (form.get('Edad')?.hasError('required')) { Ingrese fecha! } @if
+          (form.get('Edad')?.hasError('matDatepickerMin')) { La fecha no puede ser antigua! }
+        </mat-error>
+      </mat-form-field>
+      <br />
+
+      <mat-form-field>
+        <mat-label>Género</mat-label>
+        <mat-select formControlName="Genero" required>
+          @for (g of generos; track g) {
+          <mat-option [value]="g.value">{{ g.viewValue }}</mat-option>
+          }
+        </mat-select>
+        <mat-error>
+          @if (form.get('Genero')?.hasError('required')) { El Género es obligatorio. }
+          @if (form.get('Genero')?.hasError('maxlength')) { El número máximo de caracteres es de 50! }
+        </mat-error>
+      </mat-form-field>
+      <br />
+
+      <mat-form-field>
+        <mat-label>Teléfono</mat-label>
+        <input matInput formControlName="Telefono" />
+        <mat-error>
+          @if (form.get('Telefono')?.hasError('required')) { Ingrese teléfono! } @if
+          (form.get('Telefono')?.hasError('pattern')) { Debe tener 9 dígitos numéricos! } @if
+          (form.get('Telefono')?.hasError('minlength') ||
+          form.get('Telefono')?.hasError('maxlength')) { Debe tener exactamente 9 caracteres! }
+        </mat-error>
+      </mat-form-field>
+      <br />
+
+      <div style="margin-top: 20px">
+        <button mat-raised-button color="primary" type="submit">{{ edicion ? 'Editar' : 'Registrar' }}</button>
+      </div>
+    </form>
+  </div>
+</div>

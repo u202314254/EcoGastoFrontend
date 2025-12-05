@@ -1,0 +1,27 @@
+<div class="container">
+  <div class="graficoHU105">
+    <h2>Accesos sospechosos (intentos fallidos > 3)</h2>
+
+    @if(hasData == true) {
+      <div class="chart-container">
+        <canvas
+          baseChart
+          [datasets]="barChartData"
+          [labels]="barChartLabels"
+          [options]="barChartOptions"
+          [legend]="barChartLegend"
+          [type]="barChartType"
+        >
+        </canvas>
+      </div>
+    }
+
+    @if(hasData == false) {
+      <div class="no-data">
+        <mat-icon class="no-data-icon">info_outline</mat-icon>
+        <p class="no-data-message">No hay datos disponibles para mostrar.</p>
+      </div>
+    }
+    
+  </div>
+</div>
